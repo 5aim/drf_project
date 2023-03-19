@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.response import Response
 from django.shortcuts import render
 from rest_framework_simplejwt.views import (
@@ -20,3 +20,8 @@ class UserSU(APIView):
         
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomeTokenObtainPairSerializer
+
+class mockView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, reqeust):
+        return Response("reqeust get")
